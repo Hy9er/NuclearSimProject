@@ -21582,11 +21582,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67df0cdc9cd8a4499fb6c9d6b83a97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialText: {fileID: 0}
-  turbineText: {fileID: 0}
-  primaryLoopText: {fileID: 0}
-  coolantText: {fileID: 0}
-  controlRodText: {fileID: 0}
+  tutorialText: {fileID: 1722700993}
+  turbineText: {fileID: 1658362345}
+  primaryLoopText: {fileID: 613739268}
+  coolantText: {fileID: 1069300628}
+  controlRodText: {fileID: 341388310}
 --- !u!4 &1992606001
 Transform:
   m_ObjectHideFlags: 0
