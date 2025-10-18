@@ -16,6 +16,19 @@ public class PlyaerMovement : MonoBehaviour
     Rigidbody rb;
 
 
+    [SerializeField]
+    private LayerMask layerMask;
+
+    [SerializeField]
+    private Transform cameraTransform;
+
+    [SerializeField]
+    private GameObject BoricAcid;
+
+    private float pickupDistance = 4;
+    private RaycastHit ray;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -24,7 +37,7 @@ public class PlyaerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+
         verticalInput = Input.GetAxisRaw("Vertical");
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
@@ -39,7 +52,7 @@ public class PlyaerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * MovementSpeed * 10f, ForceMode.Force);
         }
-            
+
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         if (flatVel.magnitude > MovementSpeed)
@@ -51,5 +64,31 @@ public class PlyaerMovement : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (ray.collider != null)
+        {
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out ray, pickupDistance, layerMask))
+            {
+                Debug.Log(ray.transform);
+                
+                GameObject item = ray.collider.gameObject;
+
+                if(item.CompareTag("Boric Acid"))
+                {
+                    item.SetActive(false);
+                    BoricAcid.gameObject.SetActive(true);
+                }
+
+               
+
+            }
+        }
+
+    }
 }
