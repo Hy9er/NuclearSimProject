@@ -25,8 +25,15 @@ public class PlyaerMovement : MonoBehaviour
     [SerializeField]
     private GameObject BoricAcid;
 
-    private float pickupDistance = 4;
+    [SerializeField]
+    private GameObject BoricAcid2;
+
+
+
+    private float pickupDistance = 5;
     private RaycastHit ray;
+
+
 
 
     void Start()
@@ -85,7 +92,15 @@ public class PlyaerMovement : MonoBehaviour
                     BoricAcid.gameObject.SetActive(true);
                 }
 
-               
+                if (item.CompareTag("Acid Holder") && BoricAcid.activeSelf)
+                {
+                    BoricAcid.gameObject.SetActive(false);
+                    BoricAcid2.gameObject.SetActive(true);
+
+                }
+                                                    
+                  
+                
 
             }
         }
