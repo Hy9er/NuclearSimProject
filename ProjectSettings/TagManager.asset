@@ -7,6 +7,7 @@ TagManager:
   - Turbine
   - Boric Acid
   - Acid Holder
+  - Computer
   layers:
   - Default
   - TransparentFX

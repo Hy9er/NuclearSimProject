@@ -33,46 +33,62 @@ public class PlyaerMovement : MonoBehaviour
     private float pickupDistance = 5;
     private RaycastHit ray;
 
-
+    public bool operatingRobot;
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        operatingRobot = false;
     }
 
     void FixedUpdate()
     {
-
-        verticalInput = Input.GetAxisRaw("Vertical");
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-        //if player is still, slow down until stop. Else move forward
-        if (moveDirection.magnitude == 0)
+        if (operatingRobot == false)
         {
-            rb.AddForce(-10f * rb.velocity);
-        }
-        else
-        {
-            rb.AddForce(moveDirection.normalized * MovementSpeed * 10f, ForceMode.Force);
-        }
+            verticalInput = Input.GetAxisRaw("Vertical");
+            horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        if (flatVel.magnitude > MovementSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * MovementSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+
+
+            //if player is still, slow down until stop. Else move forward
+            if (moveDirection.magnitude == 0)
+            {
+                rb.AddForce(-10f * rb.velocity);
+            }
+            else
+            {
+                rb.AddForce(moveDirection.normalized * MovementSpeed * 10f, ForceMode.Force);
+            }
+
+            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            if (flatVel.magnitude > MovementSpeed)
+            {
+                Vector3 limitedVel = flatVel.normalized * MovementSpeed;
+                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            }
+
+
+
+
         }
-
 
     }
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            operatingRobot = false;
+        }
+
+
         if (ray.collider != null)
         {
 
@@ -98,8 +114,11 @@ public class PlyaerMovement : MonoBehaviour
                     BoricAcid2.gameObject.SetActive(true);
 
                 }
-                                                    
-                  
+
+                if (item.CompareTag("Computer"))
+                {
+                    operatingRobot = true;
+                }
                 
 
             }
