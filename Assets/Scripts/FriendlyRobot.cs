@@ -7,7 +7,9 @@ public class FriendlyRobot : MonoBehaviour
 {
 
     public float MovementSpeed;
-    
+
+    public GameObject pickup;
+    public GameObject robotBoricAcid;
 
     //public Transform orientation;
 
@@ -22,6 +24,11 @@ public class FriendlyRobot : MonoBehaviour
 
     [SerializeField]private bool robotControl;
 
+    [SerializeField]
+    private ReactorMalfunction reactor;
+
+    public bool hasAcid;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,12 +40,27 @@ public class FriendlyRobot : MonoBehaviour
     void Update()
     {
         
+        float distance = Vector3.Distance(this.transform.position, pickup.transform.position);
+        //Debug.Log(distance);
+        if (distance <= 4f)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+
+                pickup.SetActive(false);
+                robotBoricAcid.SetActive(true);
+                hasAcid = true;
+
+            }
+
+        }
+
+
+
     }
 
     void FixedUpdate()
     {
-
-
 
 
         if(player.operatingRobot == true)
