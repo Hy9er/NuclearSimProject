@@ -5,11 +5,14 @@ using UnityEngine.EventSystems;
 
 public class FriendlyRobot : MonoBehaviour
 {
+    public CoolantMalfunction coolantMalfunction;
 
     public float MovementSpeed;
 
     public GameObject pickup;
+    public GameObject pipePickUp;
     public GameObject robotBoricAcid;
+    public GameObject robotWithPipe;
 
     //public Transform orientation;
 
@@ -26,6 +29,9 @@ public class FriendlyRobot : MonoBehaviour
 
     [SerializeField]
     private ReactorMalfunction reactor;
+
+    [SerializeField]
+    private ParticleSystem coolantLeak;
 
     public bool hasAcid;
 
@@ -44,7 +50,12 @@ public class FriendlyRobot : MonoBehaviour
         //Debug.Log(distance);
         if (distance <= 4f)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && pipePickUp.activeSelf)
+            {
+                pipePickUp.SetActive(false);
+                robotWithPipe.SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.Q) && robotBoricAcid.activeSelf)
             {
 
                 pickup.SetActive(false);
@@ -54,8 +65,16 @@ public class FriendlyRobot : MonoBehaviour
             }
 
         }
-
-
+        float LeakDistance = Vector3.Distance(this.transform.position, coolantLeak.transform.position);
+        Debug.Log("Leak distance is:" + LeakDistance);
+        if(LeakDistance <= 4f)
+        {
+            if(Input.GetKeyDown(KeyCode.Q) && robotWithPipe.activeSelf)
+            {
+                robotWithPipe.SetActive(false);
+                coolantMalfunction.setPipeFixed(true);
+            }
+        }
 
     }
 

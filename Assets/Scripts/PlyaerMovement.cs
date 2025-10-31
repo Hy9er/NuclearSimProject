@@ -28,7 +28,11 @@ public class PlyaerMovement : MonoBehaviour
     [SerializeField]
     private GameObject BoricAcid2;
 
+    [SerializeField]
+    private GameObject SparePipe;
 
+    [SerializeField]
+    private GameObject SparePipeInHand;
 
     private float pickupDistance = 5;
     private RaycastHit ray;
@@ -119,7 +123,16 @@ public class PlyaerMovement : MonoBehaviour
                 {
                     operatingRobot = true;
                 }
-                
+                if(item.CompareTag("Spare Pipe"))
+                {
+                    item.SetActive(false);
+                    SparePipeInHand.SetActive(true); 
+                }
+                if(item.CompareTag("Acid Holder") && SparePipeInHand.activeSelf)
+                {
+                    SparePipeInHand.SetActive(false);
+                    SparePipe.SetActive(true);
+                }
 
             }
         }

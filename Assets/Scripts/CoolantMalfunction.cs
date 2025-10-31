@@ -10,6 +10,7 @@ public class CoolantMalfunction : MonoBehaviour
 {
     public GameObject interactPrompt;
     public Boolean pumpOn;
+    public Boolean pipeFix;
     public Boolean coolantMalfunction;
     public ParticleSystem coolantLeak;
     
@@ -28,6 +29,7 @@ public class CoolantMalfunction : MonoBehaviour
         { 
             coolantLeak.Play();
             pumpOn = true;
+            pipeFix = false;
             coolantMalfunction = true;
         }
 
@@ -42,9 +44,14 @@ public class CoolantMalfunction : MonoBehaviour
                     pumpOn = false;
                    coolantLeak.Stop(coolantLeak);
                 }
-                else{
+                else {
                     pumpOn = true;
                     interactText.text = "Press E to Turn Off the Coolant";
+                    if (pipeFix)
+                    {
+                        coolantMalfunction = false;
+                        interactText.text = "Good Job You Fixed the Pipe";
+                    }
                     if (coolantMalfunction)
                     {
                         coolantLeak.Play();
@@ -82,5 +89,14 @@ public class CoolantMalfunction : MonoBehaviour
         {
             interactPrompt.SetActive(false);
         }
+        else if(!coolantMalfunction && pipeFix)
+        {
+            interactPrompt.SetActive(false);
+        }
+    }
+
+    public void setPipeFixed(bool isPipeFixed)
+    {
+        pipeFix = isPipeFixed;
     }
 }
