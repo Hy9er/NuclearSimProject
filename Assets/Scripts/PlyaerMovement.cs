@@ -38,6 +38,7 @@ public class PlyaerMovement : MonoBehaviour
     private RaycastHit ray;
 
     public bool operatingRobot;
+    public bool dead;
 
 
     void Start()
@@ -46,11 +47,12 @@ public class PlyaerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         operatingRobot = false;
+        dead = false;
     }
 
     void FixedUpdate()
     {
-        if (operatingRobot == false)
+        if (operatingRobot == false && dead == false)
         {
             verticalInput = Input.GetAxisRaw("Vertical");
             horizontalInput = Input.GetAxisRaw("Horizontal");

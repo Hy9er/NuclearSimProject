@@ -11,6 +11,14 @@ public class CountDown : MonoBehaviour
 
     public bool active;
 
+    public TMP_Text GameOver;
+    public GameObject button;
+
+    public PlayerCam playerCamera;
+    public PlyaerMovement player;
+
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +37,11 @@ public class CountDown : MonoBehaviour
         else if (time <= 0)
         {
             //gameover
-
-
-
+            GameOver.gameObject.SetActive(true);
+            button.SetActive(true);
+            player.dead = true;
+            playerCamera.dead = true;
+            ShowTime(0);
         }
 
         void ShowTime(float time)
