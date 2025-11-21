@@ -40,6 +40,8 @@ public class PlyaerMovement : MonoBehaviour
     public bool operatingRobot;
     public bool dead;
 
+    [SerializeField]
+    private CoolantMalfunction coolantLeak;
 
     void Start()
     {
@@ -125,7 +127,7 @@ public class PlyaerMovement : MonoBehaviour
                 {
                     operatingRobot = true;
                 }
-                if(item.CompareTag("Spare Pipe"))
+                if(item.CompareTag("Spare Pipe") && coolantLeak.coolantMalfunction && !coolantLeak.pumpOn)
                 {
                     item.SetActive(false);
                     SparePipeInHand.SetActive(true); 

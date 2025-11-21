@@ -55,7 +55,7 @@ public class FriendlyRobot : MonoBehaviour
                 pipePickUp.SetActive(false);
                 robotWithPipe.SetActive(true);
             }
-            if (Input.GetKeyDown(KeyCode.Q) && robotBoricAcid.activeSelf)
+            else if (Input.GetKeyDown(KeyCode.Q) && !robotBoricAcid.activeSelf)
             {
 
                 pickup.SetActive(false);
