@@ -28,13 +28,20 @@ public class PlyaerMovement : MonoBehaviour
     [SerializeField]
     private GameObject BoricAcid2;
 
+    [SerializeField]
+    private GameObject SparePipe;
 
+    [SerializeField]
+    private GameObject SparePipeInHand;
 
     private float pickupDistance = 5;
     private RaycastHit ray;
 
     public bool operatingRobot;
+    public bool dead;
 
+    [SerializeField]
+    private CoolantMalfunction coolantLeak;
 
     void Start()
     {
@@ -42,11 +49,12 @@ public class PlyaerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         operatingRobot = false;
+        dead = false;
     }
 
     void FixedUpdate()
     {
-        if (operatingRobot == false)
+        if (operatingRobot == false && dead == false)
         {
             verticalInput = Input.GetAxisRaw("Vertical");
             horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -119,7 +127,16 @@ public class PlyaerMovement : MonoBehaviour
                 {
                     operatingRobot = true;
                 }
-                
+                if(item.CompareTag("Spare Pipe") && coolantLeak.coolantMalfunction && !coolantLeak.pumpOn)
+                {
+                    item.SetActive(false);
+                    SparePipeInHand.SetActive(true); 
+                }
+                if(item.CompareTag("Acid Holder") && SparePipeInHand.activeSelf)
+                {
+                    SparePipeInHand.SetActive(false);
+                    SparePipe.SetActive(true);
+                }
 
             }
         }
