@@ -20,7 +20,7 @@ public class ReactorMalfunction : MonoBehaviour
     void Update()
     {
         float distance = Vector3.Distance(this.transform.position, robot.transform.position);
-        Debug.Log(distance);
+        //Debug.Log(distance);
         if (distance <= 3f)
         {
             if (Input.GetKeyDown(KeyCode.Q))

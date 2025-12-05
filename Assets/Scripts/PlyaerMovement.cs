@@ -43,6 +43,9 @@ public class PlyaerMovement : MonoBehaviour
     [SerializeField]
     private CoolantMalfunction coolantLeak;
 
+    public bool sittingDown;
+    public GameObject sittingPosition;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,11 +53,14 @@ public class PlyaerMovement : MonoBehaviour
 
         operatingRobot = false;
         dead = false;
+
+        sittingDown = false;
+        
     }
 
     void FixedUpdate()
     {
-        if (operatingRobot == false && dead == false)
+        if (operatingRobot == false && dead == false && !sittingDown)
         {
             verticalInput = Input.GetAxisRaw("Vertical");
             horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -91,7 +97,7 @@ public class PlyaerMovement : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && operatingRobot)
         {
             operatingRobot = false;
         }
@@ -106,6 +112,7 @@ public class PlyaerMovement : MonoBehaviour
         {
             if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out ray, pickupDistance, layerMask))
             {
+
                 Debug.Log(ray.transform);
                 
                 GameObject item = ray.collider.gameObject;
@@ -127,15 +134,23 @@ public class PlyaerMovement : MonoBehaviour
                 {
                     operatingRobot = true;
                 }
-                if(item.CompareTag("Spare Pipe") && coolantLeak.coolantMalfunction && !coolantLeak.pumpOn)
+
+                if (item.CompareTag("Spare Pipe") && coolantLeak.coolantMalfunction && !coolantLeak.pumpOn)
                 {
                     item.SetActive(false);
                     SparePipeInHand.SetActive(true); 
                 }
-                if(item.CompareTag("Acid Holder") && SparePipeInHand.activeSelf)
+
+                if (item.CompareTag("Acid Holder") && SparePipeInHand.activeSelf)
                 {
                     SparePipeInHand.SetActive(false);
                     SparePipe.SetActive(true);
+                }
+
+                if (item.CompareTag("Chair"))
+                {
+                    transform.position = sittingPosition.transform.position;
+                    sittingDown = true;
                 }
 
             }
