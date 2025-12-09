@@ -12,9 +12,11 @@ public class InitializeGamemode : MonoBehaviour
     void Start()
     {
         gamemodeHolder = GameObject.Find("GamemodeHolder");
+
+
     }
 
-    private void initializeGamemode()
+    private void initializeGamemode(string gamemode)
     {
 
     }
