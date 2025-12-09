@@ -66,7 +66,7 @@ public class FriendlyRobot : MonoBehaviour
 
         }
         float LeakDistance = Vector3.Distance(this.transform.position, coolantLeak.transform.position);
-        Debug.Log("Leak distance is:" + LeakDistance);
+        //Debug.Log("Leak distance is:" + LeakDistance);
         if(LeakDistance <= 4f)
         {
             if(Input.GetKeyDown(KeyCode.Q) && robotWithPipe.activeSelf)

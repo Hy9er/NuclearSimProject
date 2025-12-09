@@ -10,7 +10,11 @@ public class GameManager : MonoBehaviour
     public GameObject coolantText;
     public GameObject controlRodText;
 
-    public GameObject pauseMenu; 
+    public bool tutoriel;
+    public bool waves;
+    public bool endless;
+
+    public int waveNum;
 
     void Start()
     {
@@ -25,9 +29,10 @@ public class GameManager : MonoBehaviour
         coolantText.SetActive(false);
         controlRodText.SetActive(false);
     }
+
     void Update()
     {
-        
+       
     }
 
     public void setTutorialText()
@@ -41,7 +46,8 @@ public class GameManager : MonoBehaviour
             tutorialText.SetActive(true);
         }
     }
-        public void setTurbineText()
+
+    public void setTurbineText()
         {
             if (turbineText.activeSelf)
             {
@@ -53,7 +59,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        public void setCoolantText()
+    public void setCoolantText()
         {
                 if (coolantText.activeSelf)
                 {
@@ -65,7 +71,7 @@ public class GameManager : MonoBehaviour
                 }
         }
 
-        public void setPrimaryLoopText()
+    public void setPrimaryLoopText()
         {
             if (primaryLoopText.activeSelf)
             {
@@ -76,6 +82,7 @@ public class GameManager : MonoBehaviour
                 primaryLoopText.SetActive(true);
             }
         }
+
     public void setControlRodText()
     {
         if (controlRodText.activeSelf)
@@ -87,6 +94,20 @@ public class GameManager : MonoBehaviour
             controlRodText.SetActive(true);
         }
     }
+
+    void MalOne()
+    {
+
+    }
+
+    void MalTwo()
+    {
+
+    }
+
+    void MalThree()
+    {
+
+    }
+
 }
-
-
