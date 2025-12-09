@@ -10,9 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject coolantText;
     public GameObject controlRodText;
 
-    public bool tutoriel;
-    public bool waves;
-    public bool endless;
+    public GameObject LearningStands;
 
     public int waveNum;
 

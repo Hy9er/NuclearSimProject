@@ -10,27 +10,64 @@ public class ReactorMalfunction : MonoBehaviour
     public GameObject robot;
     public GameObject acid;
 
-    // Start is called before the first frame update
+    public GameObject Rods;
+    public GameObject boricAcidOnShelf;
+
+
     void Start()
     {
-        malfunctionFixed = false;
+        malfunctionFixed = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float distance = Vector3.Distance(this.transform.position, robot.transform.position);
-        //Debug.Log(distance);
+
         if (distance <= 3f)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-
                 acid.SetActive(false);
                 malfunctionFixed = true;
-
+                StartCoroutine(lowerRods());
+                Debug.Log(Rods.transform.position.y);
+                Debug.Log("Test");
             }
+        }
+    }
+
+    public void startMalfunction()
+    {
+        malfunctionFixed = false;
+        boricAcidOnShelf.SetActive(true);
+        StartCoroutine(raiseRods());
+    }
+
+    public void fixMalfunction()
+    {
+        malfunctionFixed = true;
+    }
+
+    IEnumerator lowerRods()
+    {
+        while (Rods.transform.localPosition.y > 10f)
+        {
+            Rods.transform.position += Vector3.down * 1f * Time.deltaTime;
+            Debug.Log(Rods.transform.position.y);
+            yield return null;
 
         }
     }
+
+    IEnumerator raiseRods()
+    {
+        while (Rods.transform.localPosition.y > 16.14f)
+        {
+            Rods.transform.position += Vector3.up * 1f * Time.deltaTime;
+            Debug.Log(Rods.transform.position.y);
+            yield return null;
+
+        }
+    }
+
 }

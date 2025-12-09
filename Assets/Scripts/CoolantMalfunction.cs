@@ -18,7 +18,6 @@ public class CoolantMalfunction : MonoBehaviour
     {
         interactPrompt.SetActive(false);
         coolantLeak.Stop();
-        
     }
 
     void Update()
