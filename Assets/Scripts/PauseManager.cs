@@ -83,6 +83,7 @@ public class PauseManager : MonoBehaviour
         Cursor.visible = true;
         player.GetComponent<PlyaerMovement>().enabled = false;
         cam.GetComponent<PlayerCam>().enabled = false;
+        text.text = "Game Paused";
     }
 
     public void onResumeClick()
