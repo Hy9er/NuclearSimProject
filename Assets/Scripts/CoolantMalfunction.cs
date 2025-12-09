@@ -14,7 +14,6 @@ public class CoolantMalfunction : MonoBehaviour
     public Boolean coolantMalfunction;
     public ParticleSystem coolantLeak;
     
-    // Start is called before the first frame update
     void Start()
     {
         interactPrompt.SetActive(false);
@@ -22,7 +21,6 @@ public class CoolantMalfunction : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))

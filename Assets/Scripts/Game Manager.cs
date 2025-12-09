@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject coolantText;
     public GameObject controlRodText;
 
-    // Start is called before the first frame update
+    public GameObject pauseMenu; 
+
     void Start()
     {
         
@@ -24,10 +25,9 @@ public class GameManager : MonoBehaviour
         coolantText.SetActive(false);
         controlRodText.SetActive(false);
     }
-    // Update is called once per frame
     void Update()
     {
-       
+        
     }
 
     public void setTutorialText()
