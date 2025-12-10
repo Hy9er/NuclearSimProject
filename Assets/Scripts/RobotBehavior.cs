@@ -20,11 +20,9 @@ public class RobotBehavior : MonoBehaviour
     }
     void Start()
     {
-        
     }
 
   
-    // Update is called once per frame
     void Update()
     {
         if (waypoint.Count == 0) return;

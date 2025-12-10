@@ -50,6 +50,13 @@ public class InitializeGamemode : MonoBehaviour
         {
             learningStands.SetActive(false);
         }
+
+        if (!waves)
+        {
+            waveText.gameObject.SetActive(false);
+        }
+
+
     }
     
     void Update()

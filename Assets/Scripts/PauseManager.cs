@@ -32,6 +32,11 @@ public class PauseManager : MonoBehaviour
     [SerializeField]
     GameObject cam;
 
+    [SerializeField]
+    GameObject uiElements;
+
+    public bool gameOver;
+
     void Start()
     {
         resume();
@@ -41,7 +46,7 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !gameOver)
         {
             togglePause();
         }
@@ -68,6 +73,7 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         player.GetComponent<PlyaerMovement>().enabled = true;
         cam.GetComponent<PlayerCam>().enabled = true;
+        uiElements.SetActive(true);
     }
 
     private void pause()
@@ -84,6 +90,8 @@ public class PauseManager : MonoBehaviour
         player.GetComponent<PlyaerMovement>().enabled = false;
         cam.GetComponent<PlayerCam>().enabled = false;
         text.text = "Game Paused";
+        uiElements.SetActive(false);
+
     }
 
     public void onResumeClick()

@@ -39,6 +39,7 @@ public class FriendlyRobot : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         robotControl = false;
+        hasAcid = false; 
     }
 
     void Update()
@@ -54,16 +55,13 @@ public class FriendlyRobot : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Q) && !robotBoricAcid.activeSelf)
             {
-
                 pickup.SetActive(false);
                 robotBoricAcid.SetActive(true);
                 hasAcid = true;
-
             }
 
         }
         float LeakDistance = Vector3.Distance(this.transform.position, coolantLeak.transform.position);
-        //Debug.Log("Leak distance is:" + LeakDistance);
         if(LeakDistance <= 4f)
         {
             if(Input.GetKeyDown(KeyCode.Q) && robotWithPipe.activeSelf)

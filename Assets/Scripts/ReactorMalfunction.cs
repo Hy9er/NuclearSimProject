@@ -17,6 +17,7 @@ public class ReactorMalfunction : MonoBehaviour
     void Start()
     {
         malfunctionFixed = true;
+        startMalfunction();
     }
 
     void Update()
@@ -25,13 +26,9 @@ public class ReactorMalfunction : MonoBehaviour
 
         if (distance <= 3f)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && robot.GetComponent<FriendlyRobot>().hasAcid && !malfunctionFixed)
             {
-                acid.SetActive(false);
-                malfunctionFixed = true;
-                StartCoroutine(lowerRods());
-                Debug.Log(Rods.transform.position.y);
-                Debug.Log("Test");
+                fixMalfunction();
             }
         }
     }
@@ -45,7 +42,11 @@ public class ReactorMalfunction : MonoBehaviour
 
     public void fixMalfunction()
     {
+        acid.SetActive(false);
         malfunctionFixed = true;
+        StartCoroutine(lowerRods());
+        boricAcidOnShelf.SetActive(true);
+        robot.GetComponent<FriendlyRobot>().hasAcid = false;
     }
 
     IEnumerator lowerRods()
@@ -61,7 +62,7 @@ public class ReactorMalfunction : MonoBehaviour
 
     IEnumerator raiseRods()
     {
-        while (Rods.transform.localPosition.y > 16.14f)
+        while (Rods.transform.localPosition.y < 16.14f)
         {
             Rods.transform.position += Vector3.up * 1f * Time.deltaTime;
             Debug.Log(Rods.transform.position.y);
