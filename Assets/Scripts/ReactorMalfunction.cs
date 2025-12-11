@@ -5,32 +5,69 @@ using UnityEngine;
 public class ReactorMalfunction : MonoBehaviour
 {
     [SerializeField]
-    private bool malfunctionFixed;
+    public bool malfunctionFixed;
 
     public GameObject robot;
     public GameObject acid;
 
-    // Start is called before the first frame update
+    public GameObject Rods;
+    public GameObject boricAcidOnShelf;
+
+
     void Start()
     {
-        malfunctionFixed = false;
+        malfunctionFixed = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float distance = Vector3.Distance(this.transform.position, robot.transform.position);
-        Debug.Log(distance);
+
         if (distance <= 3f)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && robot.GetComponent<FriendlyRobot>().hasAcid && !malfunctionFixed)
             {
-
-                acid.SetActive(false);
-                malfunctionFixed = true;
-
+                fixMalfunction();
             }
+        }
+    }
+
+    public void startMalfunction()
+    {
+        malfunctionFixed = false;
+        boricAcidOnShelf.SetActive(true);
+        StartCoroutine(raiseRods());
+    }
+
+    public void fixMalfunction()
+    {
+        acid.SetActive(false);
+        malfunctionFixed = true;
+        StartCoroutine(lowerRods());
+        boricAcidOnShelf.SetActive(true);
+        robot.GetComponent<FriendlyRobot>().hasAcid = false;
+    }
+
+    IEnumerator lowerRods()
+    {
+        while (Rods.transform.localPosition.y > 10f)
+        {
+            Rods.transform.position += Vector3.down * 1f * Time.deltaTime;
+            Debug.Log(Rods.transform.position.y);
+            yield return null;
 
         }
     }
+
+    IEnumerator raiseRods()
+    {
+        while (Rods.transform.localPosition.y < 16.14f)
+        {
+            Rods.transform.position += Vector3.up * 1f * Time.deltaTime;
+            Debug.Log(Rods.transform.position.y);
+            yield return null;
+
+        }
+    }
+
 }

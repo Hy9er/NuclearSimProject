@@ -12,7 +12,14 @@ public class Menu : MonoBehaviour
     public GameObject titleScreen;
     public GameObject gamemodeSelect;
 
+    [SerializeField]
+    GameObject gamemodeHolder;
 
+
+    private void Start()
+    {
+        gamemodeHolder = GameObject.Find("GamemodeHolder");
+    }
 
     public void OnPlayButton()
     {
@@ -37,16 +44,22 @@ public class Menu : MonoBehaviour
 
     public void onWavesClick()
     {
-
+        SceneManager.LoadScene("ReactorScene");
+        gamemodeHolder.GetComponent<GamemodeHolder>().waves = true;
     }
 
     public void onEndlessClick()
     {
+        SceneManager.LoadScene("ReactorScene");
+        gamemodeHolder.GetComponent<GamemodeHolder>().endless = true;
+
 
     }
 
     public void onTutorialClick()
     {
+        SceneManager.LoadScene("ReactorScene");
+        gamemodeHolder.GetComponent<GamemodeHolder>().tutorial = true;
 
     }
 

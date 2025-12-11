@@ -13,26 +13,17 @@ public class CoolantMalfunction : MonoBehaviour
     public Boolean pipeFix;
     public Boolean coolantMalfunction;
     public ParticleSystem coolantLeak;
-    
-    // Start is called before the first frame update
+
+    public GameObject shelfPipe;
     void Start()
     {
         interactPrompt.SetActive(false);
         coolantLeak.Stop();
-        
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        { 
-            coolantLeak.Play();
-            pumpOn = true;
-            pipeFix = false;
-            coolantMalfunction = true;
-        }
-
         if (coolantMalfunction)
         {
             if (interactPrompt.activeSelf && Input.GetKeyDown(KeyCode.E))
@@ -51,6 +42,7 @@ public class CoolantMalfunction : MonoBehaviour
                     {
                         coolantMalfunction = false;
                         interactText.text = "Good Job You Fixed the Pipe";
+                        shelfPipe.SetActive(true);
                     }
                     if (coolantMalfunction)
                     {
@@ -68,7 +60,7 @@ public class CoolantMalfunction : MonoBehaviour
         TextMeshProUGUI interaction = interactPrompt.GetComponent<TextMeshProUGUI>();
         if (coolantMalfunction && other.gameObject.CompareTag("Player"))
         {
-             interactPrompt.SetActive(true);
+            interactPrompt.SetActive(true);
             
             if (!pumpOn)
             {
@@ -79,7 +71,6 @@ public class CoolantMalfunction : MonoBehaviour
                 interaction.text = "Press E to Turn off the Coolant";
             }
                
-
         }
     }
 
@@ -99,4 +90,13 @@ public class CoolantMalfunction : MonoBehaviour
     {
         pipeFix = isPipeFixed;
     }
+
+    public void startMalfunction()
+    {
+        coolantLeak.Play();
+        pumpOn = true;
+        pipeFix = false;
+        coolantMalfunction = true;
+    }
+
 }

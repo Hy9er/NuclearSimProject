@@ -10,9 +10,9 @@ public class RobotBehavior : MonoBehaviour
     public List<Transform> waypoint;
     public int currentWayPointIndex = 0;
     public GameObject playerFan;
+    public GameObject robotFan;
 
-    
-    // Start is called before the first frame update
+    public GameObject turbines;
 
     public void Awake()
     {
@@ -20,11 +20,9 @@ public class RobotBehavior : MonoBehaviour
     }
     void Start()
     {
-        
     }
 
   
-    // Update is called once per frame
     void Update()
     {
         if (waypoint.Count == 0) return;
@@ -42,9 +40,9 @@ public class RobotBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !turbines.GetComponent<Repair>().isFanActive)
         {
-            Destroy(gameObject);
+            robotFan.SetActive(false);
             playerFan.SetActive(true);
         }
     }
