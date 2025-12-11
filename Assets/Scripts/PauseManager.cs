@@ -74,6 +74,8 @@ public class PauseManager : MonoBehaviour
         player.GetComponent<PlyaerMovement>().enabled = true;
         cam.GetComponent<PlayerCam>().enabled = true;
         uiElements.SetActive(true);
+        transform.GetComponent<EndlessLogic>().isPaused = false;
+        transform.GetComponent<WavesLogic>().isPaused = false;
     }
 
     private void pause()
@@ -91,6 +93,8 @@ public class PauseManager : MonoBehaviour
         cam.GetComponent<PlayerCam>().enabled = false;
         text.text = "Game Paused";
         uiElements.SetActive(false);
+        transform.GetComponent<EndlessLogic>().isPaused = true;
+        transform.GetComponent<WavesLogic>().isPaused = true;
 
     }
 

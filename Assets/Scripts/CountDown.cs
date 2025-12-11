@@ -17,16 +17,12 @@ public class CountDown : MonoBehaviour
     public PlayerCam playerCamera;
     public PlyaerMovement player;
 
-    
 
-
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (active && time > 0) 
@@ -50,8 +46,6 @@ public class CountDown : MonoBehaviour
             float second = Mathf.FloorToInt(time % 60);
 
             timer.text = "Time Left: " + minute + ":" + second;
-
-
         }
 
 

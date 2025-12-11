@@ -5,7 +5,7 @@ using UnityEngine;
 public class ReactorMalfunction : MonoBehaviour
 {
     [SerializeField]
-    private bool malfunctionFixed;
+    public bool malfunctionFixed;
 
     public GameObject robot;
     public GameObject acid;
@@ -17,7 +17,6 @@ public class ReactorMalfunction : MonoBehaviour
     void Start()
     {
         malfunctionFixed = true;
-        startMalfunction();
     }
 
     void Update()

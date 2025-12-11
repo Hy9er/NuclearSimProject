@@ -34,7 +34,7 @@ public class GamemodeHolder : MonoBehaviour
 
         instance = this;
 
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += onSceneLoaded;
     }
 
@@ -44,7 +44,7 @@ public class GamemodeHolder : MonoBehaviour
         {
             tutorial = false;
             waves = false;
-            tutorial = false;
+            endless = false;
         }
     }
 

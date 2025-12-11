@@ -20,26 +20,9 @@ public class InitializeGamemode : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI waveText;
 
-    //Endless fields
-    [SerializeField]
-    TextMeshProUGUI temperatureText;
-
-    [SerializeField]
-    GameObject reactor;
-
-
-
-    private float malfuncProb;
-
-
-    //Waves fields
-
-
 
     void Start()
     {
-        malfuncProb = 0f;
-
         gamemodeHolder = GameObject.Find("GamemodeHolder");
 
         tutorial = gamemodeHolder.GetComponent<GamemodeHolder>().tutorial;
@@ -51,29 +34,21 @@ public class InitializeGamemode : MonoBehaviour
             learningStands.SetActive(false);
         }
 
-        if (!waves)
+        if (waves)
         {
-            waveText.gameObject.SetActive(false);
+            this.GetComponent<WavesLogic>().enabled = true;
         }
-
+        if (endless)
+        {
+            this.GetComponent<EndlessLogic>().enabled = true;
+        }
 
     }
     
     void Update()
     {
-        if (endless)
-        {
-
-        }
-
-        if (waves)
-        {
-
-        }
-    }
-
-    private void initializeGamemode()
-    {
+        
 
     }
+
 }

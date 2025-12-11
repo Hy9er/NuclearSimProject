@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject LearningStands;
 
-    public int waveNum;
-
     void Start()
     {
         
@@ -91,21 +89,6 @@ public class GameManager : MonoBehaviour
         {
             controlRodText.SetActive(true);
         }
-    }
-
-    void MalOne()
-    {
-
-    }
-
-    void MalTwo()
-    {
-
-    }
-
-    void MalThree()
-    {
-
     }
 
 }
