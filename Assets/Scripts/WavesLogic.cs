@@ -46,9 +46,9 @@ public class WavesLogic : MonoBehaviour
     void Start()
     {
         roundNum = 1;
-        malfuncProb = .02f;
+        malfuncProb = .05f;
         wavesUI.SetActive(true);
-        timeLeft = 15f;
+        timeLeft = 60f;
     }
 
     void Update()
@@ -69,10 +69,8 @@ public class WavesLogic : MonoBehaviour
         {
             countdownCoroutine = StartCoroutine(CountdownCoroutine());
         }
-
     }
 
-    
     private void UpdateUI(float time, int waveNum)
     {
         if (time != lastSec)
@@ -132,8 +130,8 @@ public class WavesLogic : MonoBehaviour
             this.GetComponent<GameOverScript>().initiateVictory();
             wavesUI.SetActive(false);
         }
-        timeLeft = 15f;
-        malfuncProb = .02f;
+        timeLeft = 60f;
+        malfuncProb = .01f;
         UpdateUI(timeLeft, roundNum);
     }
  }
